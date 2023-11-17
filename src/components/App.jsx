@@ -8,7 +8,7 @@ import ContactList from './ContactList/ContactList';
 
 import { Filter } from './Filter/Filter';
 
-import initialContacts from './data/contacts.json';
+import initialContacts from '../data/contacts.json';
 
 import { nanoid } from 'nanoid';
 
