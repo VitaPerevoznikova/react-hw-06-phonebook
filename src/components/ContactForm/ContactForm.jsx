@@ -2,11 +2,10 @@ import React, { useState } from 'react';
 import css from './ContactForm.module.css';
 
 import { nanoid } from '@reduxjs/toolkit';
-import { toastifyOptions } from 'components/toastifyOptions/toastifyOptions';
-import { toast } from 'react-toastify';
 
 import { plusContact } from 'redux/contacts/phone-book.reducer';
 import { useDispatch, useSelector } from 'react-redux';
+
 
 export const ContactForm = () => {
   const [name, setName] = useState('');
@@ -34,7 +33,7 @@ export const ContactForm = () => {
     e.preventDefault();
     const data = {
       name,
-      number,
+      number: Number.parseFloat(number),
     };
     const newContact = { ...data, id: nanoid() };
 
@@ -43,23 +42,16 @@ export const ContactForm = () => {
     );
 
     if (isDuplicate) {
-      toast.error(
-        `${newContact.name}: is already in contacts`,
-        toastifyOptions
-      );
+      alert(`'${newContact.name}': is already in contacts!`);
+      return;
     }
 
     dispatch(plusContact(newContact));
     setName('');
     setNumber('');
-    resetForm();
-  };
-
-  const resetForm = () => {
-    setName('');
-    setNumber('');
   };
   return (
+    
     <form className={css.form} onSubmit={handleSubmitAddContact}>
       <label className={css.label}>
         <p className={css.nameLabel}>Name</p>
@@ -93,6 +85,7 @@ export const ContactForm = () => {
         Add contacts
       </button>
     </form>
+    
   );
 };
 export default ContactForm;

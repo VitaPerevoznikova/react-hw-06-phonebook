@@ -12,16 +12,14 @@ const contactsSlice = createSlice({
   initialState,
   // Об'єкт редюсерів
   reducers: {
-    plusContact(state, {payload}) {
+    plusContact(state, { payload }) {
       // N 1
       // state.contacts = [...state.contacts, action.payload]
       // N 2
       state.contacts.push(payload);
     },
-    deleteContact(state, {payload}) {
-      state.contacts = state.contacts.filter(
-        contact => contact.id !== payload
-      );
+    deleteContact(state, { payload }) {
+      state.contacts = state.contacts.filter(contact => contact.id !== payload);
     },
   },
 });
@@ -30,8 +28,6 @@ const contactsSlice = createSlice({
 export const { plusContact, deleteContact } = contactsSlice.actions;
 // Редюсер слайсу
 export const contactsReducer = contactsSlice.reducer;
-
-export const getPhoneBookValue = state => state.phoneBook.contacts;
 
 //Reducer
 

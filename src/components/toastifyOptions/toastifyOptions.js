@@ -10,5 +10,4 @@ export const toastifyOptions = {
     progress: undefined,
     theme: 'colored',
     toastId: customId,
-    // toastId: customId,
   };

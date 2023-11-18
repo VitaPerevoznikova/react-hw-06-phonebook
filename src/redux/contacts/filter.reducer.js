@@ -1,23 +1,17 @@
-import initialContacts from 'data/contacts.json';
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialState = {
-  contacts: JSON.parse(localStorage.getItem('contacts')) ?? initialContacts,
-};
+const filterInitialState = "";
 
 const filterSlice = createSlice({
   name: 'filter',
-  initialState,
+  initialState: filterInitialState,
   reducers: {
-    setFilter(_, action) {
-        return action.payload;
-      },
+    filterContact(_, { payload }) {
+      return payload;
+    },
   },
 });
 
-// Генератори екшенів
-export const setFilter = filterSlice.actions;
-// Редюсер слайсу
-export const filterReducer = filterSlice.reducer;
+export const { filterContact } = filterSlice.actions;
 
-export const getFilter = state => state.filter;
+export const filterReducer = filterSlice.reducer;
